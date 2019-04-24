@@ -1,5 +1,6 @@
 import React from 'react';
 import TodoForm from './components/TodoComponents/TodoForm';
+import TodoList from './components/TodoComponents/TodoList';
 
 class App extends React.Component {
   // you will need a place to store your state in this component.
@@ -8,7 +9,7 @@ class App extends React.Component {
   constructor(){
     super();
     this.state = {
-      todo: [
+      todos: [
         {
           task: 'Organize Garage',
           id: 1528817077286,
@@ -19,16 +20,51 @@ class App extends React.Component {
           id: 1528817084358,
           completed: false
         }
-      ]
+      ],
+      todo: ''
     }
   }
-  
-  
+  // handleChanges = event =>{
+  //   console.log(event.target);
+  //   this.setState({
+  //     todo: {
+  //       ...this.state.todo,
+  //       [event.target.todo]: event.target.value
+  //     }
+  //   })
+
+
+  // }
+  handleChanges = event => {
+    console.log(event.target.name);
+    this.setState({
+      [event.target.name]:
+      event.target.value
+    });
+  };
+
+
+  addtoDo = event =>{
+    event.preventDefault();
+    const newTodo = { task:this.state.todo, completed:false, id: Date.now()};
+    this.setState({
+      todos: [...this.state.todos, newTodo],
+      todo:''
+    });
+
+  };
+
+
   render() {
     return (
       <div>
         <h1>To Do List</h1>
-        <TodoForm />
+        <TodoList todos = {this.state.todos} />
+        <TodoForm 
+          value={this.state.todo}
+          handleAddTodo={this.addtoDo}
+          handleChanges = {this.handleChanges}
+        />
       </div>
     );
   }
