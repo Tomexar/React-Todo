@@ -10,7 +10,7 @@ const TodoList = props => {
             <h3>To Do's</h3>
             <div className = 'todoList'>
                 {props.todos.map(todo =>(
-                    <Todo todo = {todo} key = {todo.id} />
+                    <Todo todo = {todo} key = {todo.id} toggleComplete ={props.toggleComplete}/>
                 ))}
             
             </div>
