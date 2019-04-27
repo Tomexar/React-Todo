@@ -9,8 +9,8 @@ const TodoForm = props =>{
                 value = {props.value}
                 placeholder = "To Do"
                 name = 'todo'/>
-                <button>Add To Do</button>  
-                <button>Clear Selected</button>  
+                <button className = 'todo-btn'>Add To Do</button>  
+                {/* <button>Clear Selected</button>   */}
         </form>
     )
 }
